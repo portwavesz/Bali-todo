@@ -1,0 +1,253 @@
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;  
+  box-sizing: border-box;
+}
+
+body {
+  font: normal 16px/1.5 "Helvetica Neue", sans-serif;
+  background: #2C3531;
+  box-shadow: -1px 0 4px rgba(14, 55, 63, 0.15);
+  color: #fff;
+  overflow-x: hidden;
+  padding-bottom: 50px;
+}
+
+
+/* INTRO SECTION
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+
+.intro {
+  background: #2C3531;
+  padding: 100px 0;
+}
+
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+h1 {
+  font-size: 2.5rem;
+}
+
+
+/* Rules
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+
+.Rules ul {
+  background: #116466;
+  padding: 50px 0;
+}
+
+.Rules ul li {
+  list-style-type: none;
+  position: relative;
+  width: 6px;
+  margin: 0 auto;
+  padding-top: 50px;
+  background: #fff;
+}
+
+.Rules ul li::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%);
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: inherit;
+  z-index: 1;
+}
+
+.Rules ul li div {
+  position: relative;
+  bottom: 0;
+  width: 400px;
+  padding: 15px;
+  background: #2C3531;
+}
+
+.Rules ul li div::before {
+  content: "";
+  position: absolute;
+  bottom: 7px;
+  width: 0;
+  height: 0;
+  border-style: solid;
+}
+
+.Rules ul li:nth-child(odd) div {
+  left: 45px;
+}
+
+.Rules ul li:nth-child(odd) div::before {
+  left: -15px;
+  border-width: 8px 16px 8px 0;
+  border-color: transparent #2C3531 transparent transparent;
+}
+
+.Rules ul li:nth-child(even) div {
+  left: -439px;
+}
+
+.Rules ul li:nth-child(even) div::before {
+  right: -15px;
+  border-width: 8px 0 8px 16px;
+  border-color: transparent transparent transparent #2C3531;
+}
+
+time {
+  display: block;
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+
+/* EFFECTS
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+
+.Rules ul li::after {
+  transition: background 0.5s ease-in-out;
+}
+
+.Rules ul li.in-view::after {
+  background: #fbeec1;
+}
+
+.Rules ul li div {
+  visibility: hidden;
+  opacity: 0;
+  transition: all 0.5s ease-in-out;
+}
+
+.Rules ul li:nth-child(odd) div {
+  transform: translate3d(200px, 0, 0);
+}
+
+.Rules ul li:nth-child(even) div {
+  transform:    translate3d(-200px, 0, 0);
+}
+
+.Rules ul li.in-view div {
+  transform: none;
+  visibility: visible;
+  opacity: 1;
+}
+
+
+/* GENERAL MEDIA QUERIES
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+
+@media screen and (max-width: 900px) {
+  .Rules ul li div {
+    width: 250px;
+  }
+  .Rules ul li:nth-child(even) div {
+    left: -289px;
+    /*250+45-6*/
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .Rules ul li {
+    margin-left: 20px;
+  }
+  .Rules ul li div {
+    width: calc(100vw - 91px);
+  }
+  .Rules ul li:nth-child(even) div {
+    left: 45px;
+  }
+  .Rules ul li:nth-child(even) div::before {
+    left: -15px;
+    border-width: 8px 16px 8px 0;
+    border-color: transparent #f45b69 transparent transparent;
+  }
+}
+
+
+/* EXTRA/CLIP PATH STYLES
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+.Rules-clippy ul li::after {
+  width: 40px;
+  height: 40px;
+  border-radius: 0;
+}
+
+.Rules-rhombus ul li::after {
+  clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+}
+
+.Rules-rhombus ul li div::before {
+  bottom: 12px;
+}
+
+.Rules-star ul li::after {
+  clip-path: polygon(
+    50% 0%,
+    61% 35%,
+    98% 35%,
+    68% 57%,
+    79% 91%,
+    50% 70%,
+    21% 91%,
+    32% 57%,
+    2% 35%,
+    39% 35%
+  );
+}
+
+.Rules-heptagon ul li::after {
+  clip-path: polygon(
+    50% 0%,
+    90% 20%,
+    100% 60%,
+    75% 100%,
+    25% 100%,
+    0% 60%,
+    10% 20%
+  );
+}
+
+.Rules-infinite ul li::after {
+  animation: scaleAnimation 2s infinite;
+}
+
+@keyframes scaleAnimation {
+  0% {
+    transform: translateX(-50%) scale(1);
+  }
+  50% {
+    transform: translateX(-50%) scale(1.25);
+  }
+  100% {
+    transform: translateX(-50%) scale(1);
+  }
+}
+
+
+/* FOOTER STYLES
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+.page-footer {
+  position: fixed;
+  right: 0;
+  bottom: 20px;
+  display: flex;
+  align-items: center;
+  padding: 5px;
+  color: black;
+  background: rgba(255, 255, 255, 0.65);
+}
+
+.page-footer a {
+  display: flex;
+  margin-left: 4px;
+}
